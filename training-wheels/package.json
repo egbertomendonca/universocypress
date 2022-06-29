@@ -15,6 +15,7 @@
   "author": "Egberto Mendonça",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "9.4.1"
+    "cypress": "9.4.1",
+    "cypress-real-events": "^1.7.1"
   }
 }
