@@ -78,7 +78,7 @@ describe('login', () => {
         })
     });
 
-    context.only('quando não preencho nenhum dos campos', () => {
+    context('quando não preencho nenhum dos campos', () => {
         
         const alertMessages = [           
             'E-mail é obrigatório',

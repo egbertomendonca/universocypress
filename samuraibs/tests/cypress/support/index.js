@@ -18,3 +18,10 @@ import './commands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+
+// npx cypress run --spec ./cypress/integration/login.spec.js
+// npx cypress run --spec ./cypress/integration/login.spec.js --browser electron
+// afterEach(() => {  
+//     cy.screenshot()
+// });

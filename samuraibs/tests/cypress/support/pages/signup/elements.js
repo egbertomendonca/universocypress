@@ -1,4 +1,5 @@
 exports.el =  {
+    title:('h1', 'Faça seu login'),
     name: 'input[placeholder^="Nome"]',
     email: 'input[placeholder$="email"]',
     password: 'input[placeholder*="senha"]',

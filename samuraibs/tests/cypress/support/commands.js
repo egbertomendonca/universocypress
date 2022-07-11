@@ -26,6 +26,16 @@
 
 import moment from 'moment'
 import { apiServer } from '../../cypress.json'
+import loginPage from './pages/login'
+import dashPage from './pages/dash'
+
+//App Actions
+Cypress.Commands.add('uiLogin', (user) => {
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
+    dashPage.header.userLoggedIn(user.name)
+})
 
 Cypress.Commands.add('postUser', (user) => {
     cy.task('removeUser', user.email)
@@ -62,8 +72,8 @@ Cypress.Commands.add('createAppointMent', (hour) => {
     let now = new Date()
     // yarn add  moment -D
 
-    now.setDate(now.getDate() + 3)
-    Cypress.env('appointmentDay', now.getDate())
+    now.setDate(now.getDate() + 1)
+    Cypress.env('appointmentDate', now)
 
     // const date = moment(now).format('YYYY-MM-DD ' + hour + ':00')
 
@@ -86,7 +96,7 @@ Cypress.Commands.add('createAppointMent', (hour) => {
     })
 })
 
-Cypress.Commands.add('apiLogin', (user) => {
+Cypress.Commands.add('apiLogin', (user, setLocalStorage = false) => {
     const payload = {
         email: user.email,
         password: user.password
@@ -99,7 +109,16 @@ Cypress.Commands.add('apiLogin', (user) => {
     }).then((response) => {
         expect(response.status).to.eq(200)
         Cypress.env('apiToken', response.body.token)
+
+        if (setLocalStorage) {
+            const { token, user } = response.body
+            
+            window.localStorage.setItem('@Samurai:token', token)
+            window.localStorage.setItem('@Samurai:user', JSON.stringify(user))
+        }
     })
+
+    if (setLocalStorage) cy.visit('/dashboard')
 })
 
 Cypress.Commands.add('setProviderId', (providerEmail) => {
