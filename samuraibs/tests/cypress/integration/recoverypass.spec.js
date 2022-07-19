@@ -5,13 +5,13 @@ describe('resgate de senha', () => {
     before(() => {
         cy.fixture('recovery')
         .then((recovery) =>{
-            globalThis.data = recovery
+            globalThis.data = recovery            
         })
     });
 
     context('quando o usuário esquece a senha', () => {
-        before(() => {
-            cy.postUser(globalThis.data)
+        before(() => {            
+            cy.postUser(globalThis.data)            
         });
 
         it('deve poder resgatar por email', () => {

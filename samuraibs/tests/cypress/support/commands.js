@@ -48,6 +48,7 @@ Cypress.Commands.add('postUser', (user) => {
         url: apiServer + '/users',
         body: user
     }).then((response) => {
+        console.log(response.body)
         expect(response.status).to.eq(200)
     })
 })
@@ -62,7 +63,8 @@ Cypress.Commands.add('recoveryPass', (email) => {
 
         cy.task('findToken', email)
             .then((result) => {
-                // console.log(result.token)
+                console.log('xxxx')
+                console.log(result.token)
                 Cypress.env('recoveryToken', result.token)
             })
     })

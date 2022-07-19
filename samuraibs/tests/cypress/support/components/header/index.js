@@ -2,7 +2,7 @@ import {el} from './elements'
 class Header {
 
     userLoggedIn(userName) {
-        cy.get(el.fullname, { timeout: 7000 })
+        cy.get(el.fullname)
             .should('be.visible')
             .should('have.text', userName)
     }
